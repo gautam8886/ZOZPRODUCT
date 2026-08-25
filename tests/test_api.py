@@ -106,11 +106,11 @@ class FlipkartAPITestCase(unittest.TestCase):
 
     def test_06_place_and_track_order(self):
         order_payload = {
-            "customer_name": "Gautam Singh",
-            "customer_email": "gautam@flipkart.com",
+            "customer_name": "Gautam Rathva",
             "customer_phone": "9876543210",
+            "customer_email": "gautam.rathva@zozproducts.com",
             "shipping_address": {
-                "name": "Gautam Singh",
+                "name": "Gautam Rathva",
                 "phone": "9876543210",
                 "pincode": "110001",
                 "address": "Connaught Place",

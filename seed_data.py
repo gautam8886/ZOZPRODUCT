@@ -577,11 +577,11 @@ def seed_database():
     # Add a sample placed order
     sample_order = {
         "id": "OD13948201948",
-        "customer_name": "Gautam Singh",
-        "customer_email": "gautam@example.com",
+        "customer_name": "Gautam Rathva",
+        "customer_email": "gautam.rathva@zozproducts.com",
         "customer_phone": "9876543210",
         "shipping_address": {
-            "name": "Gautam Singh",
+            "name": "Gautam Rathva",
             "phone": "9876543210",
             "pincode": "110001",
             "locality": "Connaught Place",

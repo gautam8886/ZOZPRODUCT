@@ -7,8 +7,8 @@ const app = {
     state: {
         currentView: 'home',
         user: JSON.parse(localStorage.getItem('fk_user')) || {
-            name: 'Gautam Singh',
-            email: 'gautam@zozproducts.com',
+            name: 'Gautam Rathva',
+            email: 'gautam.rathva@zozproducts.com',
             phone: '9876543210',
             isLoggedIn: true
         },
@@ -18,7 +18,7 @@ const app = {
         cart: JSON.parse(localStorage.getItem('fk_cart')) || [],
         wishlist: JSON.parse(localStorage.getItem('fk_wishlist')) || [],
         savedAddress: JSON.parse(localStorage.getItem('fk_address')) || {
-            name: 'Gautam Singh',
+            name: 'Gautam Rathva',
             phone: '9876543210',
             pincode: '110001',
             locality: 'Connaught Place',
@@ -2197,22 +2197,22 @@ const app = {
 
     quickGuestLogin: function() {
         this.state.user = {
-            name: 'Gautam Singh',
-            email: 'gautam@flipkart.com',
+            name: 'Gautam Rathva',
+            email: 'gautam.rathva@zozproducts.com',
             phone: '9876543210',
             isLoggedIn: true
         };
         localStorage.setItem('fk_user', JSON.stringify(this.state.user));
         this.updateUserBtn();
         this.toggleLoginModal(false);
-        this.showToast(`Logged in as Gautam Singh!`, 'success');
+        this.showToast(`Logged in as Gautam Rathva!`, 'success');
     },
 
     mockLogout: function() {
         this.state.user = { isLoggedIn: false };
         localStorage.removeItem('fk_user');
         this.updateUserBtn();
-        this.showToast("Logged out from Flipkart session", "info");
+        this.showToast("Logged out from ZOZ Products session", "info");
         this.navigate('home');
     },
 
