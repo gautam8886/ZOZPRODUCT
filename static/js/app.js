@@ -50,14 +50,27 @@ const app = {
 
     // ----------------- INITIALIZATION -----------------
     init: async function() {
-        console.log("🚀 Initializing Flipkart Application...");
+        console.log("🚀 Initializing ZOZ Products Application...");
+        
+        // Auto-migrate any old saved localStorage data to Gautam Rathva
+        try {
+            if (this.state.user && (this.state.user.name.includes('Singh') || this.state.user.name === 'Singh')) {
+                this.state.user.name = 'Gautam Rathva';
+                this.state.user.email = 'gautam.rathva@zozproducts.com';
+                localStorage.setItem('fk_user', JSON.stringify(this.state.user));
+            }
+            if (this.state.savedAddress && (this.state.savedAddress.name.includes('Singh') || this.state.savedAddress.name === 'Singh')) {
+                this.state.savedAddress.name = 'Gautam Rathva';
+                localStorage.setItem('fk_address', JSON.stringify(this.state.savedAddress));
+            }
+        } catch(e) {}
+
         this.updateHeaderBadges();
         this.updateUserBtn();
         await this.loadCategories();
         await this.loadBanners();
         this.renderCategoryBar();
         this.navigate('home');
-        this.startDealCountdown();
     },
 
     // ----------------- NAVIGATION & ROUTER -----------------
@@ -2219,7 +2232,7 @@ const app = {
     updateUserBtn: function() {
         const text = document.getElementById('user-btn-text');
         if (text) {
-            text.innerText = this.state.user.isLoggedIn ? (this.state.user.name.split(' ')[0] || 'My Account') : 'Login';
+            text.innerText = this.state.user && this.state.user.isLoggedIn ? (this.state.user.name || 'Gautam Rathva') : 'Login';
         }
     },
 
