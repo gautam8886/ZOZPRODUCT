@@ -1,0 +1,164 @@
+/* ================= FLIPKART CLONE CUSTOM STYLES ================= */
+
+:root {
+    --fk-blue: #1f513b;
+    --fk-blue-dark: #163b2b;
+    --fk-yellow: #ffe500;
+    --fk-orange: #fb641b;
+    --fk-green: #2e7d32;
+    --fk-bg: #f4f6f4;
+    --fk-border: #e0e0e0;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
+
+/* Utility to hide scrollbars */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Star Rating Pill */
+.fk-rating-badge {
+    background-color: #2e7d32;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    line-height: 1;
+}
+
+.fk-rating-badge-sm {
+    font-size: 11px;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* ZOZ Assured Badge */
+.fk-assured-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    background: linear-gradient(135deg, #1f513b, #133a29);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    font-style: italic;
+    padding: 1px 6px;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    letter-spacing: 0.2px;
+}
+
+.fk-assured-plus {
+    color: #ffe500;
+    font-style: normal;
+    font-weight: 900;
+}
+
+/* Animations */
+@keyframes scaleUp {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-scaleUp {
+    animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* Banner Carousel */
+.banner-slide {
+    display: none;
+    transition: opacity 0.5s ease-in-out;
+}
+.banner-slide.active {
+    display: block;
+}
+
+/* Product Card Hover Effect */
+.fk-product-card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.fk-product-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* Price Details Card Box */
+.fk-price-card {
+    border-top: 1px dashed #e0e0e0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+/* Image Zoom Magnifier Container */
+.img-zoom-container {
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+.img-zoom-container img {
+    transition: transform 0.3s ease;
+}
+.img-zoom-container:hover img {
+    transform: scale(1.15);
+}
+
+/* Accordion Steps for Checkout */
+.checkout-step {
+    transition: all 0.3s ease;
+}
+.checkout-step-active {
+    border-left: 4px solid var(--fk-blue);
+}
+
+/* Flash Deal Ribbon */
+.deal-ribbon {
+    background: linear-gradient(90deg, #ff416c, #ff4b2b);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 2px;
+}
+
+/* Custom Checkbox and Radio styling */
+input[type="checkbox"]:checked {
+    background-color: var(--fk-blue);
+    border-color: var(--fk-blue);
+}

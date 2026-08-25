@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOZ Products - Online Shopping for Mobiles, Electronics, Fashion, Home & More. Best Offers!</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://img.freepik.com/premium-vector/black-uppercase-letter-z-icon-with-arrow-white-background_95164-13223.jpg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fkBlue: '#1f513b',       /* Dark Pastel Green */
+                        fkBlueDark: '#163b2b',   /* Deeper Dark Pastel Green */
+                        fkYellow: '#ffe500',
+                        fkYellowDark: '#ffd200',
+                        fkGreen: '#2e7d32',
+                        fkOrange: '#fb641b',
+                        fkBg: '#f4f6f4',
+                        fkTextMuted: '#878787',
+                        fkBorder: '#e0e0e0'
+                    },
+                    fontFamily: {
+                        roboto: ['Roboto', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body class="bg-fkBg font-roboto text-[#212121] min-h-screen flex flex-col antialiased selection:bg-fkYellow selection:text-black">
+
+    <!-- ================= TOP ZOZ PRODUCTS HEADER ================= -->
+    <header class="sticky top-0 z-50 bg-fkBlue text-white shadow-md">
+        <div class="max-w-[1300px] mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
+            
+            <!-- Logo & Explore Plus -->
+            <div class="flex items-center gap-6 cursor-pointer" onclick="app.navigate('home')">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-lg bg-white p-0.5 overflow-hidden shadow-md flex items-center justify-center shrink-0 border-2 border-fkYellow">
+                        <img src="https://img.freepik.com/premium-vector/black-uppercase-letter-z-icon-with-arrow-white-background_95164-13223.jpg" alt="ZOZ Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col items-start leading-none">
+                        <span class="text-2xl font-black tracking-tight italic flex items-center gap-1 font-inter uppercase">
+                            ZOZ
+                            <span class="text-xs bg-fkYellow text-fkBlue font-extrabold px-1.5 py-0.5 rounded-sm not-italic ml-1 shadow-sm tracking-normal">PRODUCTS</span>
+                        </span>
+                        <span class="text-[10px] text-gray-200 hover:underline flex items-center gap-0.5 mt-0.5 italic">
+                            Explore <span class="text-fkYellow font-bold not-italic">ZOZ Plus</span>
+                            <i class="fa-solid fa-plus text-[9px] text-fkYellow"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar with live autocomplete -->
+            <div class="relative flex-1 max-w-[620px]">
+                <form id="search-form" onsubmit="event.preventDefault(); app.handleSearch();" class="relative flex items-center">
+                    <input 
+                        type="text" 
+                        id="global-search-input" 
+                        placeholder="Search for Products, Brands and More on ZOZ Products" 
+                        autocomplete="off"
+                        class="w-full py-2 pl-4 pr-11 rounded-sm text-sm text-black bg-white focus:outline-none focus:ring-1 focus:ring-blue-300 shadow-inner"
+                        oninput="app.handleSearchInput(this.value)"
+                    />
+                    <button type="submit" class="absolute right-0 top-0 bottom-0 px-3.5 text-fkBlue hover:text-fkBlueDark transition-colors">
+                        <i class="fa-solid fa-magnifying-glass text-base"></i>
+                    </button>
+                </form>
+
+                <!-- Live Auto-suggestions dropdown -->
+                <div id="search-suggestions" class="hidden absolute top-full left-0 right-0 mt-1 bg-white text-gray-800 rounded-b-md shadow-2xl border border-gray-100 z-50 overflow-hidden text-sm">
+                    <!-- Dynamic suggestions rendered via JS -->
+                </div>
+            </div>
+
+            <!-- Action Navigation Items -->
+            <div class="flex items-center gap-5 sm:gap-7 text-sm font-medium">
+                
+                <!-- Login / User Button -->
+                <div class="relative group">
+                    <button id="user-menu-btn" onclick="app.toggleLoginModal()" class="flex items-center gap-1.5 bg-white text-fkBlue px-5 py-1 rounded-sm font-semibold hover:bg-gray-100 transition shadow-sm">
+                        <i class="fa-regular fa-user text-xs"></i>
+                        <span id="user-btn-text">Login</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] ml-0.5 transition-transform group-hover:rotate-180"></i>
+                    </button>
+                    
+                    <!-- User Dropdown Menu -->
+                    <div class="hidden group-hover:block absolute right-0 top-full pt-2 w-56 z-50">
+                        <div class="bg-white text-gray-800 rounded-md shadow-2xl border border-gray-100 py-1 text-sm font-normal">
+                            <a href="javascript:void(0)" onclick="app.navigate('my-orders')" class="flex items-center gap-3 px-4 py-2.5 hover:bg-blue-50 transition border-b border-gray-100">
+                                <i class="fa-solid fa-box text-fkBlue w-4"></i>
+                                <span>My Orders</span>
+                            </a>
+                            <a href="javascript:void(0)" onclick="app.navigate('wishlist')" class="flex items-center gap-3 px-4 py-2.5 hover:bg-blue-50 transition border-b border-gray-100">
+                                <i class="fa-solid fa-heart text-red-500 w-4"></i>
+                                <span>Wishlist</span>
+                            </a>
+                            <a href="javascript:void(0)" onclick="app.navigate('admin')" class="flex items-center gap-3 px-4 py-2.5 hover:bg-blue-50 transition border-b border-gray-100">
+                                <i class="fa-solid fa-store text-emerald-600 w-4"></i>
+                                <span class="font-semibold text-fkBlue">Seller Hub (Add Products)</span>
+                            </a>
+                            <a href="javascript:void(0)" onclick="app.mockLogout()" class="flex items-center gap-3 px-4 py-2.5 hover:bg-red-50 text-red-600 transition">
+                                <i class="fa-solid fa-arrow-right-from-bracket w-4"></i>
+                                <span>Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seller Hub / Add Product CTA -->
+                <button onclick="app.navigate('admin')" class="hidden md:flex items-center gap-1.5 text-white hover:text-fkYellow transition font-medium tracking-wide">
+                    <i class="fa-solid fa-store text-sm text-fkYellow"></i>
+                    <span>Become a Seller / Add Product</span>
+                </button>
+
+                <!-- Wishlist Icon -->
+                <button onclick="app.navigate('wishlist')" class="relative flex items-center gap-1.5 hover:text-fkYellow transition">
+                    <i class="fa-regular fa-heart text-base"></i>
+                    <span class="hidden sm:inline">Wishlist</span>
+                    <span id="wishlist-badge" class="hidden absolute -top-2 -right-2.5 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+                </button>
+
+                <!-- Cart Button -->
+                <button onclick="app.navigate('cart')" class="relative flex items-center gap-2 hover:text-fkYellow transition font-medium">
+                    <div class="relative">
+                        <i class="fa-solid fa-cart-shopping text-lg"></i>
+                        <span id="cart-badge" class="hidden absolute -top-2.5 -right-3 bg-fkYellow text-fkBlue font-black text-[11px] rounded-full w-5 h-5 flex items-center justify-center shadow-sm">0</span>
+                    </div>
+                    <span class="hidden sm:inline font-semibold">Cart</span>
+                </button>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= CATEGORY NAVIGATION BAR ================= -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 select-none">
+        <div class="max-w-[1300px] mx-auto px-2 py-2 flex items-center justify-between gap-2 overflow-x-auto no-scrollbar" id="category-bar">
+            <!-- Dynamic Category items populated by app.js -->
+            <div class="text-xs text-gray-400 py-3 text-center w-full">Loading ZOZ Products categories...</div>
+        </div>
+    </nav>
+
+    <!-- ================= MAIN VIEW CONTAINER ================= -->
+    <main id="app-container" class="flex-1 max-w-[1300px] w-full mx-auto p-2 sm:p-4 transition-all duration-200">
+        <!-- Views are rendered dynamically into this container by app.js -->
+    </main>
+
+    <!-- ================= LOGIN / SIGNUP MODAL ================= -->
+    <div id="login-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-md shadow-2xl max-w-[750px] w-full flex flex-col md:flex-row overflow-hidden relative animate-scaleUp">
+            <button onclick="app.toggleLoginModal(false)" class="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl z-10">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <!-- Left Info Panel (ZOZ Blue) -->
+            <div class="bg-fkBlue text-white p-8 md:w-2/5 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold font-inter mb-3" id="modal-title">Login</h3>
+                    <p class="text-sm text-blue-100 leading-relaxed" id="modal-desc">
+                        Get access to your Orders, Wishlist and Recommendations on ZOZ Products
+                    </p>
+                </div>
+                <div class="mt-8 flex justify-center">
+                    <div class="w-24 h-24 rounded-2xl bg-white p-2 shadow-2xl flex items-center justify-center border-2 border-fkYellow">
+                        <img src="https://img.freepik.com/premium-vector/black-uppercase-letter-z-icon-with-arrow-white-background_95164-13223.jpg" alt="ZOZ Logo" class="w-full h-full object-cover rounded-xl">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form Panel -->
+            <div class="p-8 md:w-3/5 flex flex-col justify-between">
+                <form id="auth-form" onsubmit="event.preventDefault(); app.handleAuthSubmit();">
+                    <div class="space-y-6">
+                        <div class="relative border-b-2 border-fkBlue focus-within:border-fkBlueDark">
+                            <input 
+                                type="text" 
+                                id="auth-input-name" 
+                                placeholder="Enter Your Name" 
+                                class="w-full py-2 text-sm focus:outline-none placeholder-gray-400"
+                                required
+                            />
+                        </div>
+                        <div class="relative border-b-2 border-gray-300 focus-within:border-fkBlue">
+                            <input 
+                                type="text" 
+                                id="auth-input-contact" 
+                                placeholder="Enter Email / Mobile Number" 
+                                class="w-full py-2 text-sm focus:outline-none placeholder-gray-400"
+                                required
+                            />
+                        </div>
+                        
+                        <p class="text-[11px] text-gray-500 leading-normal">
+                            By continuing, you agree to ZOZ Products' <a href="#" class="text-fkBlue font-medium">Terms of Use</a> and <a href="#" class="text-fkBlue font-medium">Privacy Policy</a>.
+                        </p>
+
+                        <button type="submit" class="w-full bg-fkOrange hover:bg-[#e05615] text-white py-3 rounded-sm font-semibold text-sm shadow-md transition-all">
+                            Continue & Start Shopping
+                        </button>
+
+                        <div class="text-center text-xs text-gray-400">OR</div>
+
+                        <button type="button" onclick="app.quickGuestLogin()" class="w-full bg-white border border-gray-300 hover:bg-gray-50 text-fkBlue py-2.5 rounded-sm font-medium text-sm transition">
+                            Continue as Gautam (Guest Demo)
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-8 text-center">
+                    <span class="text-xs text-gray-500">New to ZOZ Products? </span>
+                    <a href="javascript:void(0)" onclick="app.quickGuestLogin()" class="text-xs text-fkBlue font-semibold hover:underline">Create an account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= ADD / EDIT PRODUCT MODAL (ADMIN) ================= -->
+    <div id="product-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-md shadow-2xl max-w-[850px] w-full max-h-[90vh] flex flex-col overflow-hidden relative animate-scaleUp">
+            
+            <div class="bg-fkBlue text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-box-open text-fkYellow text-lg"></i>
+                    <h3 class="text-lg font-bold" id="product-modal-title">Add New Product to ZOZ Products Catalog</h3>
+                </div>
+                <button onclick="app.toggleProductModal(false)" class="text-white/80 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 overflow-y-auto flex-1 text-sm">
+                <form id="product-form" onsubmit="event.preventDefault(); app.handleSaveProduct();">
+                    <input type="hidden" id="edit-product-id" value="">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Product Title *</label>
+                            <input type="text" id="p-title" required placeholder="e.g. Apple iPhone 15 Pro (128 GB, Titanium Blue)" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue focus:ring-1 focus:ring-fkBlue outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Brand *</label>
+                            <input type="text" id="p-brand" required placeholder="e.g. Apple, Samsung, Nike, LG" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Category *</label>
+                            <select id="p-category" required onchange="app.handleCategoryChange(this.value)" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none bg-white">
+                                <option value="Mobiles">Mobiles</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="TVs & Appliances">TVs & Appliances</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Home & Furniture">Home & Furniture</option>
+                                <option value="Beauty, Food & Toys">Beauty, Food & Toys</option>
+                                <option value="Grocery">Grocery</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Subcategory</label>
+                            <input type="text" id="p-subcategory" placeholder="e.g. Smart TVs, Laptops, Men's Footwear" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Stock Quantity</label>
+                            <input type="number" id="p-stock" value="25" min="0" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Selling Price (₹) *</label>
+                            <input type="number" id="p-price" required min="1" step="0.01" placeholder="9999" oninput="app.calculateDiscountPreview()" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Original MRP (₹) *</label>
+                            <input type="number" id="p-mrp" required min="1" step="0.01" placeholder="14999" oninput="app.calculateDiscountPreview()" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none">
+                        </div>
+
+                        <div class="md:col-span-2 bg-blue-50 border border-blue-200 rounded p-2.5 flex items-center justify-between text-xs text-blue-900">
+                            <span>Calculated Discount: <strong id="p-discount-preview" class="text-fkGreen font-bold text-sm">0% Off</strong></span>
+                            <span class="text-gray-500">Savings: <strong id="p-savings-preview" class="text-fkGreen">₹0</strong></span>
+                        </div>
+
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="block text-xs font-semibold text-gray-700">Product Images (Upload photo from Computer OR enter Image URL) *</label>
+                            
+                            <!-- Drag & Drop / File Upload Box -->
+                            <div class="border-2 border-dashed border-blue-300 bg-blue-50/40 hover:bg-blue-50 rounded-md p-4 text-center cursor-pointer transition" onclick="document.getElementById('p-file-upload').click()">
+                                <input type="file" id="p-file-upload" accept="image/*" multiple class="hidden" onchange="app.handleImageFileUpload(this)">
+                                <div class="flex flex-col items-center justify-center gap-1 text-xs text-gray-600">
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 text-fkBlue flex items-center justify-center text-lg mb-0.5">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    </div>
+                                    <p class="font-semibold text-gray-800"><span class="text-fkBlue underline">Click to choose image from your computer</span> or drag & drop</p>
+                                    <p class="text-[10px] text-gray-400">JPG, PNG, WEBP, GIF supported</p>
+                                </div>
+                            </div>
+
+                            <!-- Live Image Previews -->
+                            <div id="p-image-previews" class="flex flex-wrap gap-2 pt-1 empty:hidden"></div>
+
+                            <!-- Image URLs textarea fallback -->
+                            <div class="pt-1">
+                                <span class="text-[11px] text-gray-500 font-medium">Or enter/edit Image URLs (comma separated):</span>
+                                <textarea id="p-images" rows="2" required placeholder="https://images.unsplash.com/photo-..., /static/uploads/..." class="w-full px-3 py-1.5 border border-gray-300 rounded-sm focus:border-fkBlue outline-none font-mono text-xs mt-1" oninput="app.refreshImagePreviewsFromText()"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Description *</label>
+                            <textarea id="p-description" rows="2" required placeholder="Detailed product description..." class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none"></textarea>
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Key Highlights (One point per line)</label>
+                            <textarea id="p-highlights" rows="3" placeholder="128 GB ROM | 6.1 inch Super Retina Display&#10;48MP Main Camera | A17 Pro Chip&#10;All-day battery life" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none font-mono text-xs"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-6 md:col-span-2 pt-2 border-t border-gray-200">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="p-assured" checked class="w-4 h-4 text-fkBlue rounded focus:ring-0">
+                                <span class="text-xs font-semibold text-gray-800 flex items-center gap-1">
+                                    <span class="text-fkBlue font-bold italic">F-Assured</span> Badge
+                                </span>
+                            </label>
+
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="checkbox" id="p-deal" class="w-4 h-4 text-fkOrange rounded focus:ring-0">
+                                <span class="text-xs font-semibold text-gray-800">Featured in Deal of the Day</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                        <button type="button" onclick="app.toggleProductModal(false)" class="px-5 py-2 border border-gray-300 rounded-sm hover:bg-gray-100 transition font-medium">Cancel</button>
+                        <button type="submit" class="px-7 py-2 bg-fkBlue hover:bg-fkBlueDark text-white rounded-sm font-semibold shadow transition">Save Product to Flipkart</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= WRITE REVIEW MODAL ================= -->
+    <div id="review-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-md shadow-2xl max-w-[500px] w-full overflow-hidden animate-scaleUp">
+            <div class="bg-fkBlue text-white px-5 py-3 flex items-center justify-between">
+                <h3 class="font-bold text-sm">Write a Customer Review</h3>
+                <button onclick="app.toggleReviewModal(false)" class="text-white/80 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="review-form" onsubmit="event.preventDefault(); app.handleSubmitReview();" class="p-5 space-y-4 text-sm">
+                <input type="hidden" id="rev-product-id">
+                
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Rate this Product *</label>
+                    <div class="flex items-center gap-2 text-2xl text-amber-400 cursor-pointer" id="rating-stars">
+                        <i class="fa-solid fa-star" data-val="1" onclick="app.setRatingStar(1)"></i>
+                        <i class="fa-solid fa-star" data-val="2" onclick="app.setRatingStar(2)"></i>
+                        <i class="fa-solid fa-star" data-val="3" onclick="app.setRatingStar(3)"></i>
+                        <i class="fa-solid fa-star" data-val="4" onclick="app.setRatingStar(4)"></i>
+                        <i class="fa-solid fa-star" data-val="5" onclick="app.setRatingStar(5)"></i>
+                    </div>
+                    <input type="hidden" id="rev-rating" value="5">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Your Name</label>
+                    <input type="text" id="rev-name" placeholder="Gautam Singh" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none text-xs">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Review Title</label>
+                    <input type="text" id="rev-title" placeholder="Awesome quality, highly recommended!" class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none text-xs">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Detailed Review *</label>
+                    <textarea id="rev-comment" rows="3" required placeholder="Tell other shoppers what you like or dislike about this product..." class="w-full px-3 py-2 border border-gray-300 rounded-sm focus:border-fkBlue outline-none text-xs"></textarea>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="app.toggleReviewModal(false)" class="px-4 py-1.5 border border-gray-300 rounded-sm text-xs font-medium">Cancel</button>
+                    <button type="submit" class="px-5 py-1.5 bg-fkOrange hover:bg-[#e05615] text-white rounded-sm font-semibold text-xs shadow">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= TOAST NOTIFICATION CONTAINER ================= -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- ================= ZOZ PRODUCTS FOOTER ================= -->
+    <footer class="bg-[#172337] text-white text-xs mt-auto border-t border-gray-700">
+        <div class="max-w-[1300px] mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-5 gap-8">
+            
+            <div>
+                <h4 class="text-gray-400 font-semibold mb-3 tracking-wider text-[11px] uppercase">About ZOZ</h4>
+                <ul class="space-y-1.5 text-gray-300">
+                    <li><a href="#" class="hover:underline">Contact Us</a></li>
+                    <li><a href="#" class="hover:underline">About ZOZ Products</a></li>
+                    <li><a href="#" class="hover:underline">Careers</a></li>
+                    <li><a href="#" class="hover:underline">ZOZ Stories</a></li>
+                    <li><a href="#" class="hover:underline">Press</a></li>
+                    <li><a href="#" class="hover:underline">Corporate Information</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-gray-400 font-semibold mb-3 tracking-wider text-[11px] uppercase">Categories</h4>
+                <ul class="space-y-1.5 text-gray-300">
+                    <li><a href="javascript:void(0)" onclick="app.filterByCategory('Mobiles')" class="hover:underline">Mobiles & Tablets</a></li>
+                    <li><a href="javascript:void(0)" onclick="app.filterByCategory('Electronics')" class="hover:underline">Electronics & Audio</a></li>
+                    <li><a href="javascript:void(0)" onclick="app.filterByCategory('Fashion')" class="hover:underline">Fashion & Footwear</a></li>
+                    <li><a href="javascript:void(0)" onclick="app.filterByCategory('TVs & Appliances')" class="hover:underline">Smart TVs & Appliances</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-gray-400 font-semibold mb-3 tracking-wider text-[11px] uppercase">Help & Support</h4>
+                <ul class="space-y-1.5 text-gray-300">
+                    <li><a href="#" class="hover:underline">Payments</a></li>
+                    <li><a href="#" class="hover:underline">Shipping</a></li>
+                    <li><a href="#" class="hover:underline">Cancellation & Returns</a></li>
+                    <li><a href="#" class="hover:underline">FAQ</a></li>
+                    <li><a href="#" class="hover:underline">Report Infringement</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-gray-400 font-semibold mb-3 tracking-wider text-[11px] uppercase">Consumer Policy</h4>
+                <ul class="space-y-1.5 text-gray-300">
+                    <li><a href="#" class="hover:underline">Cancellation & Returns</a></li>
+                    <li><a href="#" class="hover:underline">Terms Of Use</a></li>
+                    <li><a href="#" class="hover:underline">Security</a></li>
+                    <li><a href="#" class="hover:underline">Privacy</a></li>
+                    <li><a href="#" class="hover:underline">Sitemap</a></li>
+                    <li><a href="#" class="hover:underline">Grievance Redressal</a></li>
+                </ul>
+            </div>
+
+            <div class="border-t md:border-t-0 md:border-l border-gray-700 md:pl-6">
+                <h4 class="text-gray-400 font-semibold mb-3 tracking-wider text-[11px] uppercase">Mail Us:</h4>
+                <p class="text-gray-300 text-[11px] leading-relaxed mb-4">
+                    ZOZ Products Internet Private Limited,<br>
+                    Connaught Place, Central Business District,<br>
+                    New Delhi, 110001, India
+                </p>
+                <div class="flex gap-4 text-base text-gray-400">
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Copyright and Payment partners -->
+        <div class="border-t border-gray-700 py-6 px-4">
+            <div class="max-w-[1300px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-gray-300 text-xs">
+                <div class="flex flex-wrap items-center gap-6">
+                    <span class="flex items-center gap-1.5 cursor-pointer" onclick="app.navigate('admin')"><i class="fa-solid fa-store text-fkYellow"></i> Become a ZOZ Seller</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-star text-fkYellow"></i> Advertise</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-gift text-fkYellow"></i> Gift Cards</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-question text-fkYellow"></i> Help Center</span>
+                </div>
+                <div>
+                    <span>© 2026 ZOZ Products • All Rights Reserved</span>
+                </div>
+                <div>
+                    <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/payment-method-c454fb.svg" alt="Payment partners" class="h-6 opacity-80">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App JavaScript Logic -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
