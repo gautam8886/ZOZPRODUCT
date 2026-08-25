@@ -1,4 +1,4 @@
-# 🛒 ZOZ Products - Modern E-Commerce Platform
+# 🛒 ZOZCart - Modern E-Commerce Platform
 
 A feature-rich, high-performance, full-stack E-Commerce web application built with Python Flask, SQLite, and vanilla JavaScript + Tailwind CSS. Designed with an authentic shopping experience, custom dark pastel green branding, direct product image uploads, and seller dashboard.
 
@@ -77,4 +77,4 @@ Open your browser and visit: **http://localhost:5000**
 ---
 
 ## 📜 License
-MIT License • Built with ❤️ for ZOZ Products
+MIT License • Built with ❤️ for ZOZCart

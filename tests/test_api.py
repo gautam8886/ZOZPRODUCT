@@ -108,7 +108,7 @@ class FlipkartAPITestCase(unittest.TestCase):
         order_payload = {
             "customer_name": "Gautam Rathva",
             "customer_phone": "9876543210",
-            "customer_email": "gautam.rathva@zozproducts.com",
+            "customer_email": "gautam.rathva@zozcart.com",
             "shipping_address": {
                 "name": "Gautam Rathva",
                 "phone": "9876543210",

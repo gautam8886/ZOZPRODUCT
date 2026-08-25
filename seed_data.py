@@ -578,7 +578,7 @@ def seed_database():
     sample_order = {
         "id": "OD13948201948",
         "customer_name": "Gautam Rathva",
-        "customer_email": "gautam.rathva@zozproducts.com",
+        "customer_email": "gautam.rathva@zozcart.com",
         "customer_phone": "9876543210",
         "shipping_address": {
             "name": "Gautam Rathva",
