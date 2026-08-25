@@ -6,28 +6,55 @@
 const app = {
     state: {
         currentView: 'home',
-        user: JSON.parse(localStorage.getItem('fk_user')) || {
-            name: 'Gautam Rathva',
-            email: 'gautam.rathva@zozproducts.com',
-            phone: '9876543210',
-            isLoggedIn: true
-        },
+        user: (function() {
+            try {
+                let u = JSON.parse(localStorage.getItem('fk_user'));
+                if (!u || !u.name || u.name.includes('Singh')) {
+                    u = { name: 'Gautam Rathva', email: 'gautam.rathva@zozproducts.com', phone: '9876543210', isLoggedIn: true };
+                    localStorage.setItem('fk_user', JSON.stringify(u));
+                }
+                return u;
+            } catch(e) {
+                return { name: 'Gautam Rathva', email: 'gautam.rathva@zozproducts.com', phone: '9876543210', isLoggedIn: true };
+            }
+        })(),
         categories: [],
         banners: [],
         deals: [],
         cart: JSON.parse(localStorage.getItem('fk_cart')) || [],
         wishlist: JSON.parse(localStorage.getItem('fk_wishlist')) || [],
-        savedAddress: JSON.parse(localStorage.getItem('fk_address')) || {
-            name: 'Gautam Rathva',
-            phone: '9876543210',
-            pincode: '110001',
-            locality: 'Connaught Place',
-            address: 'Flat 402, Block B, Central Towers',
-            city: 'New Delhi',
-            state: 'Delhi',
-            landmark: 'Near Metro Station',
-            type: 'Home'
-        },
+        savedAddress: (function() {
+            try {
+                let a = JSON.parse(localStorage.getItem('fk_address'));
+                if (!a || !a.name || a.name.includes('Singh')) {
+                    a = {
+                        name: 'Gautam Rathva',
+                        phone: '9876543210',
+                        pincode: '110001',
+                        locality: 'Connaught Place',
+                        address: 'Flat 402, Block B, Central Towers',
+                        city: 'New Delhi',
+                        state: 'Delhi',
+                        landmark: 'Near Metro Station',
+                        type: 'Home'
+                    };
+                    localStorage.setItem('fk_address', JSON.stringify(a));
+                }
+                return a;
+            } catch(e) {
+                return {
+                    name: 'Gautam Rathva',
+                    phone: '9876543210',
+                    pincode: '110001',
+                    locality: 'Connaught Place',
+                    address: 'Flat 402, Block B, Central Towers',
+                    city: 'New Delhi',
+                    state: 'Delhi',
+                    landmark: 'Near Metro Station',
+                    type: 'Home'
+                };
+            }
+        })(),
         catalogFilters: {
             category: 'all',
             subcategory: '',
@@ -1117,6 +1144,10 @@ const app = {
         const deliveryFee = totalSellingPrice > 500 ? 0 : 40;
         const finalAmount = totalSellingPrice + deliveryFee;
 
+        const userName = (this.state.user && this.state.user.name && !this.state.user.name.includes('Singh')) ? this.state.user.name : 'Gautam Rathva';
+        const userContact = (this.state.user && (this.state.user.phone || this.state.user.email)) || '9876543210';
+        const shipName = (this.state.savedAddress && this.state.savedAddress.name && !this.state.savedAddress.name.includes('Singh')) ? this.state.savedAddress.name : 'Gautam Rathva';
+
         container.innerHTML = `
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                 
@@ -1130,7 +1161,7 @@ const app = {
                                 <span class="w-6 h-6 rounded bg-gray-200 text-gray-700 flex items-center justify-center font-bold text-xs">1</span>
                                 <div>
                                     <span class="text-xs font-bold text-gray-400 uppercase">Login</span>
-                                    <h4 class="text-sm font-bold text-gray-800">${this.state.user.name} <span class="text-xs text-gray-500 font-normal ml-2">${this.state.user.phone || this.state.user.email}</span></h4>
+                                    <h4 class="text-sm font-bold text-gray-800">${userName} <span class="text-xs text-gray-500 font-normal ml-2">${userContact}</span></h4>
                                 </div>
                             </div>
                             <span class="text-fkGreen font-bold text-xs flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Verified</span>
@@ -1150,7 +1181,7 @@ const app = {
                         <form id="checkout-address-form" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
                             <div>
                                 <label class="block font-semibold text-gray-700 mb-1">Full Name *</label>
-                                <input type="text" id="ship-name" required value="${this.state.savedAddress.name}" class="w-full px-3 py-2 border border-gray-300 rounded outline-none focus:border-fkBlue">
+                                <input type="text" id="ship-name" required value="${shipName}" class="w-full px-3 py-2 border border-gray-300 rounded outline-none focus:border-fkBlue">
                             </div>
                             <div>
                                 <label class="block font-semibold text-gray-700 mb-1">10-digit Mobile Number *</label>
