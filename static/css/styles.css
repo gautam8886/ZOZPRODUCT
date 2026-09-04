@@ -1,4 +1,4 @@
-/* ================= ZOZCART CUSTOM STYLES ================= */
+/* ================= RAMDEV STORE CUSTOM STYLES ================= */
 
 :root {
     --fk-blue: #1f513b;
@@ -55,7 +55,7 @@
     border-radius: 3px;
 }
 
-/* ZOZ Assured Badge */
+/* Ramdev Assured Badge */
 .fk-assured-pill {
     display: inline-flex;
     align-items: center;

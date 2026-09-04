@@ -498,7 +498,7 @@ def place_order():
         data = request.get_json(force=True)
         order_id = generate_order_id()
         customer_name = data.get('customer_name', 'Customer').strip()
-        customer_email = data.get('customer_email', 'user@zozcart.com').strip()
+        customer_email = data.get('customer_email', 'user@ramdevstore.com').strip()
         customer_phone = data.get('customer_phone', '').strip()
         shipping_address = data.get('shipping_address', {})
         items = data.get('items', [])
@@ -648,6 +648,6 @@ def get_admin_stats():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     print("=" * 60)
-    print(f" ZOZCart Server running at http://localhost:{port}")
+    print(f" Ramdev Store Server running at http://localhost:{port}")
     print("=" * 60)
     app.run(host='0.0.0.0', port=port, debug=True)

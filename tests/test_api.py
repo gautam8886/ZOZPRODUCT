@@ -10,7 +10,7 @@ from app import app
 from models import init_db
 from seed_data import seed_database
 
-class ZOZCartAPITestCase(unittest.TestCase):
+class Ramdev StoreAPITestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Reset and seed database
@@ -108,7 +108,7 @@ class ZOZCartAPITestCase(unittest.TestCase):
         order_payload = {
             "customer_name": "Gautam Rathva",
             "customer_phone": "9876543210",
-            "customer_email": "gautam.rathva@zozcart.com",
+            "customer_email": "gautam.rathva@ramdevstore.com",
             "shipping_address": {
                 "name": "Gautam Rathva",
                 "phone": "9876543210",

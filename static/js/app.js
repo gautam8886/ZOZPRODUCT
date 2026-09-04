@@ -1,5 +1,5 @@
 /**
- * ZOZCart - Full Frontend Application Controller
+ * Ramdev Store - Full Frontend Application Controller
  * Handles Routing, State, REST API synchronization, Catalog, Cart, Checkout & Admin Portal
  */
 
@@ -10,12 +10,12 @@ const app = {
             try {
                 let u = JSON.parse(localStorage.getItem('fk_user'));
                 if (!u || !u.name || u.name.includes('Singh')) {
-                    u = { name: 'Gautam Rathva', email: 'gautam.rathva@zozcart.com', phone: '9876543210', isLoggedIn: true };
+                    u = { name: 'Gautam Rathva', email: 'gautam.rathva@ramdevstore.com', phone: '9876543210', isLoggedIn: true };
                     localStorage.setItem('fk_user', JSON.stringify(u));
                 }
                 return u;
             } catch(e) {
-                return { name: 'Gautam Rathva', email: 'gautam.rathva@zozcart.com', phone: '9876543210', isLoggedIn: true };
+                return { name: 'Gautam Rathva', email: 'gautam.rathva@ramdevstore.com', phone: '9876543210', isLoggedIn: true };
             }
         })(),
         categories: [],
@@ -77,13 +77,13 @@ const app = {
 
     // ----------------- INITIALIZATION -----------------
     init: async function() {
-        console.log("🚀 Initializing ZOZCart Application...");
+        console.log("🚀 Initializing Ramdev Store Application...");
         
         // Auto-migrate any old saved localStorage data to Gautam Rathva
         try {
             if (this.state.user && (this.state.user.name.includes('Singh') || this.state.user.name === 'Singh')) {
                 this.state.user.name = 'Gautam Rathva';
-                this.state.user.email = 'gautam.rathva@zozcart.com';
+                this.state.user.email = 'gautam.rathva@ramdevstore.com';
                 localStorage.setItem('fk_user', JSON.stringify(this.state.user));
             }
             if (this.state.savedAddress && (this.state.savedAddress.name.includes('Singh') || this.state.savedAddress.name === 'Singh')) {
@@ -267,7 +267,7 @@ const app = {
                 <div class="bg-white rounded-sm shadow-sm p-4 sm:p-5 border border-gray-200">
                     <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-4">
                         <div>
-                            <h2 class="text-lg sm:text-xl font-bold font-inter text-gray-900">ZOZCart Catalog</h2>
+                            <h2 class="text-lg sm:text-xl font-bold font-inter text-gray-900">Ramdev Store Catalog</h2>
                             <p class="text-xs text-gray-500">Explore items available in our store</p>
                         </div>
                         <button onclick="app.filterByCategory('all')" class="bg-fkBlue hover:bg-fkBlueDark text-white text-xs font-semibold px-4 py-2 rounded-sm shadow-sm transition">
@@ -296,7 +296,7 @@ const app = {
                             <i class="fa-solid fa-truck-fast"></i>
                         </div>
                         <h4 class="text-sm font-bold text-gray-800">Fast & Free Delivery</h4>
-                        <p class="text-xs text-gray-500 mt-0.5">ZOZ Assured express delivery on all orders</p>
+                        <p class="text-xs text-gray-500 mt-0.5">Ramdev Assured express delivery on all orders</p>
                     </div>
 
                     <div class="flex flex-col items-center">
@@ -416,7 +416,7 @@ const app = {
                         </div>
                     </div>
 
-                    <!-- ZOZCart Assured Filter -->
+                    <!-- Ramdev Store Assured Filter -->
                     <div class="border-b border-gray-200 pb-4">
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="filter-assured" ${this.state.catalogFilters.is_assured ? 'checked' : ''} onchange="app.handleFilterChange('is_assured', this.checked)" class="w-4 h-4 text-fkBlue rounded">
@@ -483,7 +483,7 @@ const app = {
                     <div id="catalog-products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         <div class="col-span-full py-16 text-center text-gray-400 text-sm">
                             <i class="fa-solid fa-circle-notch fa-spin text-2xl text-fkBlue mb-2"></i>
-                            <p>Fetching matching ZOZCart...</p>
+                            <p>Fetching matching Ramdev Store...</p>
                         </div>
                     </div>
                 </section>
@@ -642,7 +642,7 @@ const app = {
         container.innerHTML = `
             <div class="py-20 text-center text-gray-400">
                 <i class="fa-solid fa-circle-notch fa-spin text-3xl text-fkBlue mb-3"></i>
-                <p>Loading full ZOZCart product details...</p>
+                <p>Loading full Ramdev Store product details...</p>
             </div>
         `;
 
@@ -738,7 +738,7 @@ const app = {
                                 <div class="space-y-1.5 text-gray-700">
                                     <p class="flex items-start gap-2"><i class="fa-solid fa-tag text-fkGreen mt-0.5"></i> <span><strong>Bank Offer:</strong> 10% Instant Discount on HDFC Bank Credit Cards, up to ₹1,500</span></p>
                                     <p class="flex items-start gap-2"><i class="fa-solid fa-tag text-fkGreen mt-0.5"></i> <span><strong>Special Price:</strong> Get extra ₹2,000 off (price inclusive of discount)</span></p>
-                                    <p class="flex items-start gap-2"><i class="fa-solid fa-tag text-fkGreen mt-0.5"></i> <span><strong>Partner Offer:</strong> Sign-up for ZOZCart Pay Later & get free ₹500 Times Prime</span></p>
+                                    <p class="flex items-start gap-2"><i class="fa-solid fa-tag text-fkGreen mt-0.5"></i> <span><strong>Partner Offer:</strong> Sign-up for Ramdev Pay Later & get free ₹500 Times Prime</span></p>
                                     <p class="flex items-start gap-2"><i class="fa-solid fa-tag text-fkGreen mt-0.5"></i> <span><strong>No Cost EMI:</strong> Avail No Cost EMI on select cards for orders above ₹3,000</span></p>
                                 </div>
                             </div>
@@ -797,7 +797,7 @@ const app = {
                                 <div class="flex items-center justify-between">
                                     <div>
                                         <h4 class="font-bold text-gray-900 text-base">Ratings & Reviews</h4>
-                                        <p class="text-xs text-gray-500">From verified ZOZCart customers</p>
+                                        <p class="text-xs text-gray-500">From verified Ramdev Store customers</p>
                                     </div>
                                     <button onclick="app.openReviewModal(${p.id})" class="bg-fkBlue hover:bg-fkBlueDark text-white px-4 py-2 rounded-sm text-xs font-semibold shadow-sm transition">
                                         Rate Product
@@ -881,7 +881,7 @@ const app = {
         }
         localStorage.setItem('fk_cart', JSON.stringify(this.state.cart));
         this.updateHeaderBadges();
-        this.showToast(`"${title.slice(0, 24)}..." added to your ZOZCart!`, 'success');
+        this.showToast(`"${title.slice(0, 24)}..." added to your Ramdev Store!`, 'success');
     },
 
     buyNow: function(id, title, price, mrp, image, is_assured) {
@@ -958,7 +958,7 @@ const app = {
             container.innerHTML = `
                 <div class="bg-white rounded-sm shadow-sm p-12 text-center max-w-xl mx-auto border border-gray-200 my-8">
                     <img src="https://rukminim2.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90" alt="Empty Cart" class="w-48 mx-auto mb-4">
-                    <h3 class="text-lg font-bold text-gray-800">Your ZOZCart Cart is empty!</h3>
+                    <h3 class="text-lg font-bold text-gray-800">Your Ramdev Store Cart is empty!</h3>
                     <p class="text-xs text-gray-500 mt-1">Explore our deals and add items to your cart now.</p>
                     <button onclick="app.navigate('home')" class="mt-5 bg-fkBlue hover:bg-fkBlueDark text-white px-8 py-2.5 rounded-sm font-semibold text-xs shadow transition">
                         Shop Now
@@ -985,7 +985,7 @@ const app = {
                 <!-- LEFT: Cart Items (8 Cols) -->
                 <div class="lg:col-span-8 space-y-3">
                     
-                    <!-- ZOZCart Delivery Pincode Bar -->
+                    <!-- Ramdev Store Delivery Pincode Bar -->
                     <div class="bg-white p-3 rounded-sm shadow-sm border border-gray-200 flex items-center justify-between text-xs">
                         <div class="flex items-center gap-2 text-gray-700">
                             <span>Deliver to: <strong>${this.state.savedAddress.name}, ${this.state.savedAddress.pincode}</strong></span>
@@ -1083,7 +1083,7 @@ const app = {
             container.innerHTML = `
                 <div class="bg-white rounded-sm shadow-sm p-12 text-center max-w-md mx-auto border border-gray-200 my-8">
                     <i class="fa-regular fa-heart text-5xl text-gray-300 mb-3"></i>
-                    <h3 class="text-lg font-bold text-gray-800">Your ZOZCart Wishlist is empty</h3>
+                    <h3 class="text-lg font-bold text-gray-800">Your Ramdev Store Wishlist is empty</h3>
                     <p class="text-xs text-gray-500 mt-1">Explore more and shortlist some items!</p>
                     <button onclick="app.navigate('catalog')" class="mt-5 bg-fkBlue hover:bg-fkBlueDark text-white px-6 py-2 rounded-sm font-semibold text-xs shadow transition">
                         Browse Products
@@ -1514,7 +1514,7 @@ const app = {
         container.innerHTML = `
             <div class="py-16 text-center text-gray-400 text-xs">
                 <i class="fa-solid fa-circle-notch fa-spin text-2xl text-fkBlue mb-2"></i>
-                <p>Loading your ZOZCart orders...</p>
+                <p>Loading your Ramdev Store orders...</p>
             </div>
         `;
 
@@ -1605,7 +1605,7 @@ const app = {
                     <div>
                         <div class="flex items-center gap-2">
                             <span class="bg-fkYellow text-fkBlue font-bold text-xs px-2 py-0.5 rounded">SELLER DASHBOARD</span>
-                            <span class="text-xs text-blue-200">ZOZCart Partner Portal</span>
+                            <span class="text-xs text-blue-200">Ramdev Store Partner Portal</span>
                         </div>
                         <h1 class="text-2xl font-bold font-inter mt-1">Product Management & Store Inventory</h1>
                         <p class="text-xs text-blue-100 mt-0.5">Add new products, modify prices, update catalog & track customer orders</p>
@@ -1958,7 +1958,7 @@ const app = {
     },
 
     openAddProductModal: function() {
-        document.getElementById('product-modal-title').innerText = "Add New Product to ZOZCart Catalog";
+        document.getElementById('product-modal-title').innerText = "Add New Product to Ramdev Store Catalog";
         document.getElementById('edit-product-id').value = "";
         document.getElementById('product-form').reset();
         document.getElementById('p-discount-preview').innerText = "0% Off";
@@ -2053,7 +2053,7 @@ const app = {
             const data = await res.json();
             if (data.success) {
                 this.toggleProductModal(false);
-                this.showToast(editId ? "Product updated successfully!" : "Product added to ZOZCart Catalog!", "success");
+                this.showToast(editId ? "Product updated successfully!" : "Product added to Ramdev Store Catalog!", "success");
                 this.loadAdminStats();
                 this.loadAdminInventory();
             } else {
@@ -2067,7 +2067,7 @@ const app = {
 
     deleteProduct: async function(productId, title) {
         title = unescape(title);
-        if (!confirm(`Are you sure you want to permanently delete "${title}" from ZOZCart catalog?`)) return;
+        if (!confirm(`Are you sure you want to permanently delete "${title}" from Ramdev Store catalog?`)) return;
 
         try {
             const res = await fetch(`/api/products/${productId}`, { method: 'DELETE' });
@@ -2229,7 +2229,7 @@ const app = {
 
         this.state.user = {
             name: name,
-            email: contact.includes('@') ? contact : `${name.toLowerCase().replace(/\s+/g, '')}@zozcart.com`,
+            email: contact.includes('@') ? contact : `${name.toLowerCase().replace(/\s+/g, '')}@ramdevstore.com`,
             phone: !contact.includes('@') ? contact : '9876543210',
             isLoggedIn: true
         };
@@ -2242,7 +2242,7 @@ const app = {
     quickGuestLogin: function() {
         this.state.user = {
             name: 'Gautam Rathva',
-            email: 'gautam.rathva@zozcart.com',
+            email: 'gautam.rathva@ramdevstore.com',
             phone: '9876543210',
             isLoggedIn: true
         };
@@ -2256,7 +2256,7 @@ const app = {
         this.state.user = { isLoggedIn: false };
         localStorage.removeItem('fk_user');
         this.updateUserBtn();
-        this.showToast("Logged out from ZOZCart session", "info");
+        this.showToast("Logged out from Ramdev Store session", "info");
         this.navigate('home');
     },
 

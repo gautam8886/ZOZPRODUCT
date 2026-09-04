@@ -1,4 +1,4 @@
-# 🛒 ZOZCart - Modern E-Commerce Platform
+# 🛒 Ramdev Store - Modern E-Commerce Platform
 
 A feature-rich, high-performance, full-stack E-Commerce web application built with Python Flask, SQLite, and vanilla JavaScript + Tailwind CSS. Designed with an authentic shopping experience, custom dark pastel green branding, direct product image uploads, and seller dashboard.
 
@@ -27,7 +27,7 @@ A feature-rich, high-performance, full-stack E-Commerce web application built wi
 ## 📂 Project Architecture
 
 `
-zozcart/
+ramdevstore/
 ├── app.py              # Main Flask REST API & routing server
 ├── models.py           # SQLite database schema initialization
 ├── seed_data.py        # Database seeder
@@ -55,7 +55,7 @@ zozcart/
 Clone the repository and install dependencies:
 `ash
 git clone <repository_url>
-cd zozcart
+cd ramdevstore
 pip install -r requirements.txt
 `
 
@@ -77,4 +77,4 @@ Open your browser and visit: **http://localhost:5000**
 ---
 
 ## 📜 License
-MIT License • Built with ❤️ for ZOZCart
+MIT License • Built with ❤️ for Ramdev Store
