@@ -27,7 +27,7 @@ A feature-rich, high-performance, full-stack E-Commerce web application built wi
 ## 📂 Project Architecture
 
 `
-flipkart-clone/
+zozcart/
 ├── app.py              # Main Flask REST API & routing server
 ├── models.py           # SQLite database schema initialization
 ├── seed_data.py        # Database seeder
@@ -55,7 +55,7 @@ flipkart-clone/
 Clone the repository and install dependencies:
 `ash
 git clone <repository_url>
-cd flipkart-clone
+cd zozcart
 pip install -r requirements.txt
 `
 

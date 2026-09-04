@@ -65,7 +65,7 @@ def seed_database():
         VALUES (?, ?, ?, ?)
         ''', (cat['name'], cat['slug'], cat['icon'], json.dumps(cat['subcategories'])))
 
-    # Realistic Flipkart Products
+    # Realistic ZOZCart Products
     products = [
         {
             "title": "Apple iPhone 15 Pro (Natural Titanium, 128 GB)",
@@ -549,7 +549,7 @@ def seed_database():
             {
                 "user_name": "Rahul Sharma",
                 "rating": 5,
-                "title": "Exceptional Quality! Flipkart delivery was super fast.",
+                "title": "Exceptional Quality! ZOZCart delivery was super fast.",
                 "comment": "Totally worth every rupee. Outstanding build quality, packaging was 10/10 and received genuine sealed product.",
                 "verified_purchase": True
             },
@@ -563,7 +563,7 @@ def seed_database():
             {
                 "user_name": "Amit Kumar",
                 "rating": 5,
-                "title": "Awesome! Flipkart Assured promise kept.",
+                "title": "Awesome! ZOZCart Assured promise kept.",
                 "comment": "Got delivery in just 24 hours. Highly recommended to everyone looking for premium experience.",
                 "verified_purchase": True
             }
@@ -631,7 +631,7 @@ def seed_database():
 
     conn.commit()
     conn.close()
-    print("Database seeded with sample Flipkart categories, products, reviews & orders!")
+    print("Database seeded with sample ZOZCart categories, products, reviews & orders!")
 
 if __name__ == '__main__':
     seed_database()

@@ -1,5 +1,5 @@
 /**
- * Flipkart Clone - Full Frontend Application Controller
+ * ZOZCart - Full Frontend Application Controller
  * Handles Routing, State, REST API synchronization, Catalog, Cart, Checkout & Admin Portal
  */
 
@@ -416,7 +416,7 @@ const app = {
                         </div>
                     </div>
 
-                    <!-- Flipkart Assured Filter -->
+                    <!-- ZOZCart Assured Filter -->
                     <div class="border-b border-gray-200 pb-4">
                         <label class="flex items-center gap-2 cursor-pointer">
                             <input type="checkbox" id="filter-assured" ${this.state.catalogFilters.is_assured ? 'checked' : ''} onchange="app.handleFilterChange('is_assured', this.checked)" class="w-4 h-4 text-fkBlue rounded">
@@ -642,7 +642,7 @@ const app = {
         container.innerHTML = `
             <div class="py-20 text-center text-gray-400">
                 <i class="fa-solid fa-circle-notch fa-spin text-3xl text-fkBlue mb-3"></i>
-                <p>Loading full Flipkart product details...</p>
+                <p>Loading full ZOZCart product details...</p>
             </div>
         `;
 
@@ -985,7 +985,7 @@ const app = {
                 <!-- LEFT: Cart Items (8 Cols) -->
                 <div class="lg:col-span-8 space-y-3">
                     
-                    <!-- Flipkart Delivery Pincode Bar -->
+                    <!-- ZOZCart Delivery Pincode Bar -->
                     <div class="bg-white p-3 rounded-sm shadow-sm border border-gray-200 flex items-center justify-between text-xs">
                         <div class="flex items-center gap-2 text-gray-700">
                             <span>Deliver to: <strong>${this.state.savedAddress.name}, ${this.state.savedAddress.pincode}</strong></span>
@@ -1514,7 +1514,7 @@ const app = {
         container.innerHTML = `
             <div class="py-16 text-center text-gray-400 text-xs">
                 <i class="fa-solid fa-circle-notch fa-spin text-2xl text-fkBlue mb-2"></i>
-                <p>Loading your Flipkart orders...</p>
+                <p>Loading your ZOZCart orders...</p>
             </div>
         `;
 
@@ -2229,7 +2229,7 @@ const app = {
 
         this.state.user = {
             name: name,
-            email: contact.includes('@') ? contact : `${name.toLowerCase().replace(/\s+/g, '')}@flipkart.com`,
+            email: contact.includes('@') ? contact : `${name.toLowerCase().replace(/\s+/g, '')}@zozcart.com`,
             phone: !contact.includes('@') ? contact : '9876543210',
             isLoggedIn: true
         };

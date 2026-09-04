@@ -10,7 +10,7 @@ from app import app
 from models import init_db
 from seed_data import seed_database
 
-class FlipkartAPITestCase(unittest.TestCase):
+class ZOZCartAPITestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Reset and seed database

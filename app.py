@@ -498,7 +498,7 @@ def place_order():
         data = request.get_json(force=True)
         order_id = generate_order_id()
         customer_name = data.get('customer_name', 'Customer').strip()
-        customer_email = data.get('customer_email', 'user@flipkart.com').strip()
+        customer_email = data.get('customer_email', 'user@zozcart.com').strip()
         customer_phone = data.get('customer_phone', '').strip()
         shipping_address = data.get('shipping_address', {})
         items = data.get('items', [])
